@@ -1,6 +1,6 @@
-# Node Native Loader
+# Node Loader For Relative Path
 
-Package for loading native files in Node and Electron applications. The project is inspired by the [node-addon-loader](https://github.com/ushu/node-addon-loader). It works in the similar way but **allows to build path at runtime**.
+Package for loading native files in Node and Electron applications. The project is inspired by the [native-ext-loader](https://github.com/smt116/node-native-ext-loader). It works in the similar way but **allows to build relative path at runtime**.
 
 ## Installation
 
@@ -8,22 +8,23 @@ Add the package to the development dependencies:
 
 ```bash
 # using npm:
-$ npm install native-ext-loader --save-dev
+$ npm install node-loader-ralative --save-dev
 
 # using yarn:
-$ yarn add --dev native-ext-loader
+$ yarn add --dev node-loader-ralative
 ```
 
 ## Usage
 
 Update rules entry in the Webpack configuration file:
+(same as node-loader)
 
 ```js
 module: {
   rules: [
     {
       test: /\.node$/,
-      loader: "native-ext-loader"
+      loader: "node-loader-ralative"
     }
   ];
 }
@@ -38,30 +39,22 @@ module: {
   rules: [
     {
       test: /\.node$/,
-      loader: "native-ext-loader",
+      loader: "node-loader-ralative",
       options: {
-        rewritePath: path.resolve(__dirname, "dist")
+        relativePath: __dirname
       }
     }
   ];
 }
 ```
 
-### `basePath` (default: `[]`)
+### `basePath` (default: `undefined`)
 
-It allows adjusting path to the native module. The array will be concatenated with the resource name and then used in the runtime. For example, when the compile application lives inside `app.asar/renderer` subdirectory (Electron package), the path to the native module can be adjusted by using `basePath: ['app.asar', 'renderer']`.
+It allows to set a path that will be the basic webpack config path to load native files.
 
-Note that `basePath` is ignored when `rewritePath` option is used.
+Note that, when `undefined`, there is no different with node-loader; when path setted(usually it is `__dirname`, also the webpack config path), this package will calculate out the relative path from the param path, by path.relative in node native module and load correctly.
 
-### `rewritePath` (default: `undefined`)
-
-It allows to set an absolute paths to native files.
-
-Note that it needs to remain `undefined` if you are building a package with embedded files. This way, the compiled application will work no matter of its location. This is important when building Electron applications that can be placed in any directory by the end user.
-
-### `emit` (default: `true`)
-
-Specifies whether the imported `.node` file will be copied to the output directory.
+If any error is cached, you could log filePath manually to check it.
 
 ## Releasing a new version
 

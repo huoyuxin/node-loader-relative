@@ -1,18 +1,20 @@
 {
-  "author": "Maciej Małecki <smt116@gmail.com>",
+  "author": "MingYuanXiaoShui <mingyuanxiaoshui@163.com>",
+  "email": "mingyuanxiaoshui@163.com",
   "dependencies": {},
-  "description": "Loader for Node native extensions",
+  "description": "Loader for Node native extensions resolve relative path situation",
   "keywords": [
     "electron",
     "loader",
     "native",
     "node",
+    "relative",
+    "path",
     "webpack"
   ],
-  "license": "MIT",
   "main": "index.js",
-  "name": "native-ext-loader",
-  "repository": "https://github.com/smt116/node-native-loader",
+  "name": "node-loader-relative",
+  "repository": "https://github.com/huoyuxin/node-loader-relative.git",
   "scripts": {},
-  "version": "2.3.0"
+  "version": "0.0.0"
 }
