@@ -11,8 +11,8 @@ module.exports = function(content) {
   const config = Object.assign(defaultConfig, this.query);
 
   const fileName = path.basename(this.resourcePath);
-  let filePath = config.relativePath
-    ? path.relative(config.relativePath, this.context)
+  let filePath = config.basePath
+    ? path.relative(config.basePath, this.context)
     : path.resolve(this.context);
 
   filePath = path.join(filePath, fileName);

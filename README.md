@@ -41,7 +41,7 @@ module: {
       test: /\.node$/,
       loader: "node-loader-ralative",
       options: {
-        relativePath: __dirname
+        basePath: __dirname
       }
     }
   ];
