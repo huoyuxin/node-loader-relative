@@ -1,6 +1,6 @@
 var path = require("path");
 
-module.exports = function(content) {
+module.exports = function() {
   const basePath = (this.query && this.query.basePath) || "";
 
   this.addDependency(this.resourcePath);
@@ -9,7 +9,7 @@ module.exports = function(content) {
     const filePath = path.resolve(__dirname, 
     ${JSON.stringify(
       path.join(
-        path.relative(basePath, this.context),
+        basePath ? path.relative(basePath, this.context) : this.context,
         path.basename(this.resourcePath)
       )
     )}
