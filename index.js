@@ -5,19 +5,17 @@ module.exports = function(content) {
 
   this.addDependency(this.resourcePath);
 
-  return (
-    "const path = require('path');" +
-    "const filePath = path.resolve(__dirname, " +
-    JSON.stringify(
+  return `const path = require('path');
+    const filePath = path.resolve(__dirname, 
+    ${JSON.stringify(
       path.join(
         path.relative(basePath, this.context),
         path.basename(this.resourcePath)
       )
-    ) +
-    ");" +
-    "try { global.process.dlopen(module, filePath); } " +
-    "catch(exception) { throw new Error('Cannot open ' + filePath + ': ' + exception); };"
-  );
+    )}
+    );
+    try { global.process.dlopen(module, filePath); } 
+    catch(exception) { throw new Error('Cannot open ' + filePath + ': ' + exception); };`;
 };
 
 module.exports.raw = true;
