@@ -1,5 +1,4 @@
 var path = require("path");
-console.log("\n\n\n\n\n-----webpack diy loader");
 
 module.exports = function(content) {
   const defaultConfig = {
