@@ -1,7 +1,7 @@
 var path = require("path");
 
 module.exports = function(content) {
-  const basePath = (this.query && this.query.basePath) || [];
+  const basePath = (this.query && this.query.basePath) || "";
 
   this.addDependency(this.resourcePath);
 
